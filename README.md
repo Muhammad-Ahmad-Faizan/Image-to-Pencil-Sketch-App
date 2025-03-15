@@ -1,4 +1,4 @@
-**#Image to Pencil Sketch App**
+#Image to Pencil Sketch App
 This is a web application that converts an image into a pencil sketch using OpenCV and Python. The app provides an intuitive interface where users can upload an image, generate a sketch, and download the final output.
 ✨ Features
 
