@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to Sketch Converter</title>
+    <!-- <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(to right, #1e0e32, #0d1b2a);        }
+        h1 {
+            color: #fff;
+            font-size: 2.5rem;
+        }
+        form, .container {
+            margin: 20px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input[type="file"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        img {
+            max-width: 80%;
+            max-height: 400px;
+            margin: 10px 0;
+            border: 2px solid #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: #4cae4c;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+    </style> -->
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(to right, #1e0e32, #0d1b2a);
+    color: #e0e0e0;
+}
+
+h1 {
+    color: #e91e63; /* Neon Pink */
+    font-size: 2.5rem;
+    text-shadow: 0 0 10px rgba(233, 30, 99, 0.8);
+}
+
+h2 {
+    color: #03dac6; /* Neon Cyan */
+    text-shadow: 0 0 8px rgba(3, 218, 198, 0.8);
+}
+
+.container, form {
+    margin: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+.mid_container{
+    display: flex;
+
+}
+
+input[type="file"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+img {
+    max-width: 80%;
+    max-height: 400px;
+    margin: 10px 0;
+    border: 2px solid white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+}
+.image-wrapper {
+    display: flex;
+    flex-direction: row; /* Align images side by side */
+    justify-content: center;
+    align-items: center;
+    gap: 30px; /* Space between images */
+    flex-wrap: wrap; /* Wrap if screen is small */
+}
+
+.btn {
+    padding: 12px 24px;
+    background: linear-gradient(to right, #ff0080, #7928ca);
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 10px;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 4px 10px rgba(255, 0, 128, 0.6);
+    transition: 0.3s ease-in-out;
+}
+
+.btn:hover {
+    background: linear-gradient(to right, #d40078, #5b1ea0);
+    box-shadow: 0 6px 15px rgba(255, 0, 128, 0.9);
+    transform: scale(1.05);
+}
+
+.error {
+    color: #ff5252;
+    font-weight: bold;
+    text-shadow: 0 0 6px rgba(255, 82, 82, 0.8);
+}
+
+.success {
+    color: #00c853;
+    font-weight: bold;
+    text-shadow: 0 0 6px rgba(0, 200, 83, 0.8);
+}
+</style>
+</head>
+<body>
+    <h1>Convert Your Image to Pencil Sketch</h1>
+
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p class="{{ category }}">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form action="/" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required>
+        <button type="submit" class="btn">Upload & Convert</button>
+    </form>
+
+    <div class="container">
+       <div class="mid_container">
+        {% if image %}
+            <div>
+                <h2>Original Image:</h2>
+                <img src="{{ image }}" alt="Uploaded Image">
+            </div>
+        {% endif %}
+
+        {% if sketch %}
+            <div>    
+        <h2>Sketch Image:</h2>
+            <img src="{{ sketch }}" alt="Sketch Image">
+        </div>
+        </div>
+            <a href="{{ url_for('download_file', filename='sketch.jpg') }}" class="btn">Download Sketch</a>
+            <a href="{{ url_for('clear_images') }}" class="btn">Clear Images</a>
+        {% endif %}
+    </div>
+</body>
+</html>
