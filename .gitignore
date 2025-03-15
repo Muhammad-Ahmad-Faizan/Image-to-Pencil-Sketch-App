@@ -1,5 +1,5 @@
 # Ignore virtual environment
-stock_env/
+.venv/
 
 # Ignore installed packages
 __pycache__/
