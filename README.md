@@ -29,14 +29,3 @@ This is a web application that converts an image into a pencil sketch using Open
     python app.py
 
 Now, open your browser and go to http://127.0.0.1:5000/.
-🚀 Deployment on Render
-
-    Create a new Render web service
-    Connect your GitHub repository
-    Set the build command:
-
-    pip install -r requirements.txt
-
-Set the start command:
-
-    gunicorn app:app
