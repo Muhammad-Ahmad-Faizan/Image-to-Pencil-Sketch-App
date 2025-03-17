@@ -6,6 +6,9 @@ This is a web application that converts an image into a pencil sketch using Open
     📥 Download the sketched image
     🖥️ Simple and user-friendly UI
     🔧 Built with Flask, OpenCV, and HTML/CSS
+    
+📸 Screenshot
+![image](https://github.com/user-attachments/assets/d41a71e4-5fdc-439d-9cfe-60b83467d8a3)
 
 🛠️ Installation
 1️⃣ Clone the Repository
