@@ -20,7 +20,7 @@ This is a web application that converts an image into a pencil sketch using Open
 
     python -m venv .venv
     source .venv/bin/activate  # For macOS/Linux
-# OR
+## OR
     .venv\Scripts\activate  # For Windows
 
 3️⃣ Install Dependencies
